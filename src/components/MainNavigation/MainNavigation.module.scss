@@ -1,0 +1,32 @@
+.header {
+    max-width: 60rem;
+    max-height: 60px;
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logoWrapper{
+      height: 50px;
+      width: 100px;
+      img{
+        height: 50px;
+        width: 100px;
+      }
+    }
+  }
+  
+  .list {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .list a {
+    text-decoration: none;
+    color: var(--color-primary-400);
+  }
+  
+  .list a:hover,
+  .list a.active {
+    color: var(--color-primary-800);
+  }
