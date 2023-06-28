@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import HeaderCartButton from '../HeaderCart/HeaderCartButton';
 import classes from './MainNavigation.module.scss';
 // import NewsletterSignup from './NewsletterSignup';
@@ -7,7 +7,9 @@ function MainNavigation() {
     return (
         <header className={classes.header}>
             <div className={classes.logoWrapper}>
-                <img src="/logo_transparent.png" />
+                <Link to="/">
+                    <img src="/logo_transparent.png" />
+                </Link>
             </div>
             <nav>
                 <ul className={classes.list}>
@@ -45,7 +47,7 @@ function MainNavigation() {
                 </ul>
             </nav>
             <div className={classes.cartWrapper}>
-                <HeaderCartButton />
+                {/* <HeaderCartButton /> */}
             </div>
         </header>
     );
