@@ -2,7 +2,21 @@
 .sidebarLayout{
     display: flex;
     flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid red;
+    justify-content: space-between;
+    padding: 1rem 2rem;
     .sidebar{
         display: flex;
+        display: flex;
+        max-width: 30vw;
+        min-width: 30vw;
+        border: 1px solid yellow;
+        flex-direction: column;
+    }
+    .mainSection{
+        width: auto;
     }
 }
