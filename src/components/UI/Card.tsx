@@ -2,11 +2,12 @@ import classes from './Card.module.scss';
 import { ReactNode } from 'react';
 
 interface Props {
-    children: ReactNode
+    children: ReactNode,
+    className?: string
 }
 
-const Card = ({ children }: Props) => {
-    return <div className={classes.card}>
+const Card = ({ children, className }: Props) => {
+    return <div className={[classes.card, className ? classes[className] : ''].join(" ")}>
         {children}
     </div>
 }
