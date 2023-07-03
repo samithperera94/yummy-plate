@@ -6,4 +6,13 @@
     &.cartCard{
         margin-top: 2rem;
     }
+    &.mealItem{
+        max-height: 250px;
+        width: 38rem;
+        display: flex;
+        flex-direction: row;
+        color: #363636;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import MealItem from '../models/meal';
+import Meal from '../components/Meal/Meal';
 import classes from "./HomePage.module.scss";
 
 const Dummy_Meals: MealItem[] = [
@@ -13,7 +14,11 @@ const HomePage = () => {
         <>
             <div>HomePage</div>
             <ul className={classes.meals}>
-
+                {
+                    Dummy_Meals.map((meal) => {
+                        return <Meal meal={meal} key={meal.id} />
+                    })
+                }
 
             </ul>
         </>

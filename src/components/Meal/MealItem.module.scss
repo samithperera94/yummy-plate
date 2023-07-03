@@ -1,0 +1,47 @@
+.image{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 5px;
+}
+.summary{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 200px;
+    width: calc(100% - 150px);
+    .title{
+        display: flex;
+        margin-block-start: 0.3em;
+        margin-block-end: 0.3em;
+    }
+    .tags{
+        display: flex;
+        .tag{
+            display: flex;
+            background: #ebd7bc;
+            color: #fff;
+            height: 30px;
+            border-radius: 30px;
+            padding: 0.2rem;
+            margin: 0 0.2em;
+        }
+    }
+    .description{
+        display: flex;
+    }
+    .actions{
+        display: flex;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        .price{
+            display: flex;
+            font-size: 1.17em;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+    }
+}
