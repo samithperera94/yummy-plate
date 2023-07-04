@@ -1,19 +1,34 @@
 import React from 'react';
 import classes from "./CartItem.module.scss";
+import CartItem from '../../models/cart';
+import { useAppDispatch } from '../../store';
+import { cartActions } from '../../store/cart';
 
-const CartProductItem = () => {
+const CartProductItem: React.FC<{ cartData: CartItem }> = (props) => {
+    const { id, name, price, totalPrice, amount } = props.cartData;
+
+    const dispatch = useAppDispatch();
+
+    const addItemHandler = () => {
+        const item = props.cartData
+        dispatch(cartActions.addToCart({ item }))
+    }
+
     return (
-        <li className={classes.cartItem}>
+        <li className={classes.cartItem} key={id}>
             <div className={classes.details}>
-                <h3 className={classes.title}>Fish Bun</h3>
+                <h3 className={classes.title}>{name}</h3>
                 <div className={classes.summary}>
-                    <span className={classes.amount}>x 2</span>
-                    <span className={classes.price}>80</span>
+                    <div>
+                        <span className={classes.amount}>{price}</span>
+                        <span className={classes.amount}>x {amount}</span>
+                    </div>
+                    <span className={classes.price}>{totalPrice}</span>
                 </div>
             </div>
             <div className={classes.actions}>
                 <button>-</button>
-                <button>+</button>
+                <button onClick={addItemHandler}>+</button>
             </div>
         </li>
     )

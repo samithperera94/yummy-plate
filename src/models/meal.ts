@@ -12,14 +12,15 @@ class MealItem extends CartItem {
     constructor(
         id:string,
         name:string,
-        price:string,
+        price:number,
         amount:number,
+        totalPrice:number,
         description:string,
         portion:string,
         tags:string[],
         url:string
         ) {
-        super(id,name,price,amount);
+        super(id,name,price,amount,totalPrice);
         this.description = description;
         this.portion = portion;
         this.tags = tags;

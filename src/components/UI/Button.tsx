@@ -7,7 +7,10 @@ interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement
 
 const Button = ({ children, className, ...props }: Props) => {
     return (
-        <button className={[classes.button, className ? classes[className] : ""].join(" ")}>
+        <button
+            className={[classes.button, className ? classes[className] : ""].join(" ")}
+            {...props}
+        >
             {children}
         </button>
     )

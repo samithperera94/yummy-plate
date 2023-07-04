@@ -4,12 +4,13 @@ import CartIcon from './CartIcon';
 import classes from "./Cart.module.scss";
 import Button from '../UI/Button';
 import CartItem from '../../models/cart';
-import CartProductItem from "./CartItem"
+import CartProductItem from "./CartItem";
+import { useAppSelector } from '../../store';
 
 const DummyCartData = [
-    new CartItem("1", "fish bun", "80", 2),
-    new CartItem("2", "tea bun", "50", 2),
-    new CartItem("3", "egg bun", "80", 2)
+    new CartItem("1", "fish bun", 80, 2, 160),
+    new CartItem("2", "tea bun", 50, 2, 100),
+    new CartItem("3", "egg bun", 80, 2, 160)
 ]
 
 const EmptyCart = () => {
@@ -26,21 +27,24 @@ const EmptyCart = () => {
 }
 
 const Cart = () => {
+    const cartItems = useAppSelector(state => state.cart.cartItems);
+    const isDisabled = cartItems.length === 0 ? 'disabled' : undefined;
+    console.warn("cartItems", cartItems);
     return (
         <Card className='cartCard'>
             <h3 className={classes.title}>Your Order</h3>
-            {/* <EmptyCart /> */}
-            <ul className={classes.cartItems}>
-                <CartProductItem />
-                <CartProductItem />
-                <CartProductItem />
-                <CartProductItem />
-                <CartProductItem />
-            </ul>
-            <div className={classes.totalAmount}>
+            {cartItems.length === 0 && <EmptyCart />}
+            {cartItems && <ul className={classes.cartItems}>
+
+                {cartItems.map((item) => {
+                    return <CartProductItem cartData={item} />
+                })}
+            </ul>}
+
+            {cartItems.length !== 0 && <div className={classes.totalAmount}>
                 <h4 className={classes.label}>Total Amount</h4>
                 <span className={classes.total}>200</span>
-            </div>
+            </div>}
 
             <Button className='cartBtn'>Go To Checkout</Button>
 
