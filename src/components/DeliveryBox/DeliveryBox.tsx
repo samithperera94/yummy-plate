@@ -3,6 +3,8 @@ import Card from '../UI/Card';
 import CustomSelect from '../UI/CustomSelect';
 import SelectOption from '../../models/select';
 import classes from "./DeliveryBox.module.scss";
+import { useAppDispatch, useAppSelector } from '../../store';
+import { cartActions } from '../../store/cart';
 
 
 const _options: SelectOption[] = [
@@ -14,10 +16,17 @@ const _defaultValue: SelectOption = new Option('Delivery', 'delivery');
 
 const DeliveryBox = () => {
 
+    const dispatch = useAppDispatch();
+    const deliveryType = useAppSelector(state => state.cart.deliveryType);
 
 
     const onItemSelectHandler = (item: SelectOption | null) => {
-        console.warn("item ::::::", item)
+        console.warn("item ::::::", item, item?.value);
+        const value = item?.value;
+        if (value) {
+            dispatch(cartActions.setDeliveryType({ type: value }))
+        }
+
     }
     return (
         <Card>
@@ -27,9 +36,12 @@ const DeliveryBox = () => {
                 onItemSelect={onItemSelectHandler}
                 className='deliveryType'
             />
-            <div className={classes.address}>
+            {deliveryType === 'delivery' && <div className={classes.address}>
                 <a>Enter a delivery address</a>
-            </div>
+            </div>}
+            {deliveryType === 'pickup' && <div className={classes.time}>
+                open : 9.00 A.M. to 10.00 P.M
+            </div>}
         </Card>
 
     )

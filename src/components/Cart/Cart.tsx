@@ -28,7 +28,7 @@ const EmptyCart = () => {
 
 const Cart = () => {
     const cartItems = useAppSelector(state => state.cart.cartItems);
-    const isDisabled = cartItems.length === 0 ? 'disabled' : undefined;
+    const isDisabled = cartItems.length === 0 ? true : false;
     console.warn("cartItems", cartItems);
     return (
         <Card className='cartCard'>
@@ -46,7 +46,7 @@ const Cart = () => {
                 <span className={classes.total}>200</span>
             </div>}
 
-            <Button className='cartBtn'>Go To Checkout</Button>
+            <Button disabled={isDisabled} className='cartBtn'>Go To Checkout</Button>
 
         </Card>
 

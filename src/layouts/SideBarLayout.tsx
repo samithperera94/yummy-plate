@@ -7,7 +7,7 @@ import DeliveryBox from "../components/DeliveryBox/DeliveryBox";
 const SideBarLayout = () => {
   return (
     <div className={classes.sidebarLayout}>
-      <div>
+      <div className={classes.mainSection}>
         <Outlet />
       </div>
       <div className={classes.sidebar}>

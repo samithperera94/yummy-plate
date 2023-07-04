@@ -8,7 +8,8 @@
     }
     &.mealItem{
         max-height: 250px;
-        width: 38rem;
+        width: 80%;
+        max-width: 800px;
         display: flex;
         flex-direction: row;
         color: #363636;
