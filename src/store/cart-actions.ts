@@ -10,14 +10,7 @@ const baseUrl = 'https://react-http-d7746-default-rtdb.asia-southeast1.firebased
 export const sendCartData = (cart:cartState) => {
     return async () => {
         const sendRequest = async() => {
-            // const response =  await fetch('https://react-http-d7746-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json',{
-            //     method:'PUT',
-            //     body:JSON.stringify({
-            //         items:cart.cartItems,
-            //         totalQuantity:cart.totalQuantity,
-            //         deliveryType:cart.cartItems
-            //     })
-            // });
+            
 
             const sendData = {
                 items:cart.cartItems,
@@ -45,15 +38,7 @@ export const getCartData = ()=> {
     return async(dispatch:ThunkDispatch<{
         cart: cartState;
     }, undefined, AnyAction> & Dispatch<AnyAction>)=>{
-        const getData = async() => {
-            // const response = await fetch('https://react-http-d7746-default-rtdb.asia-southeast1.firebasedatabase.app/cart.json');
-    
-            // if(!response.ok){
-            //     throw new Error("data retriening failed!");
-            // }
-            
-            // const data = await response.json();
-            // return data
+        const getData = async() => {            
 
             axios.get(baseUrl).then(response => {
                 console.log("response.data !!!!",response.data);
@@ -74,15 +59,7 @@ export const getCartData = ()=> {
 
         try{
             await getData();
-            // const cartData = await getData();
-            // console.log("cartData !!!!",cartData);
-            // const cart:cartState = {
-            //     cartItems:cartData.items,
-            //     totalQuantity:cartData.totalQuantity,
-            //     deliveryType:cartData.deliveryType,
-            //     isCartChanged:false
-            // }
-            // dispatch(cartActions.replaceCart({cart}))
+            
         }catch(error){
             console.error(error)
         }

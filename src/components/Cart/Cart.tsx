@@ -3,15 +3,9 @@ import Card from '../UI/Card';
 import CartIcon from './CartIcon';
 import classes from "./Cart.module.scss";
 import Button from '../UI/Button';
-import CartItem from '../../models/cart';
 import CartProductItem from "./CartItem";
 import { useAppSelector } from '../../store';
 
-const DummyCartData = [
-    new CartItem("1", "fish bun", 80, 2, 160),
-    new CartItem("2", "tea bun", 50, 2, 100),
-    new CartItem("3", "egg bun", 80, 2, 160)
-]
 
 const EmptyCart = () => {
     return (
@@ -29,7 +23,6 @@ const EmptyCart = () => {
 const Cart = () => {
     const cartItems = useAppSelector(state => state.cart.cartItems);
     const isDisabled = cartItems.length === 0 ? true : false;
-    console.warn("cartItems", cartItems);
     return (
         <Card className='cartCard'>
             <h3 className={classes.title}>Your Order</h3>
@@ -37,7 +30,7 @@ const Cart = () => {
             {cartItems && <ul className={classes.cartItems}>
 
                 {cartItems.map((item) => {
-                    return <CartProductItem cartData={item} />
+                    return <CartProductItem cartData={item} key={item.id} />
                 })}
             </ul>}
 
