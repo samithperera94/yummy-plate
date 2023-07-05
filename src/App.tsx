@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
-import { sendCartData } from './store/cart-actions';
+import { sendCartData, getCartData } from './store/cart-actions';
 import { useAppSelector, useAppDispatch } from './store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
@@ -45,6 +45,10 @@ function App() {
     }
 
   }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(getCartData())
+  }, [dispatch])
 
 
 

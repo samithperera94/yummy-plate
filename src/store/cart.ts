@@ -50,6 +50,11 @@ const cartSlice = createSlice({
             state.totalQuantity --;
             state.isCartChanged=true;
         },
+        replaceCart(state,action:PayloadAction<{cart:cartState}>){
+            state.cartItems = action.payload.cart.cartItems;
+            state.totalQuantity = action.payload.cart.totalQuantity;
+            state.deliveryType = action.payload.cart.deliveryType;
+        },
         setDeliveryType(state,action:PayloadAction<{type:string|number}>){
             state.deliveryType = action.payload.type;
             state.isCartChanged=true;
