@@ -8,13 +8,18 @@
     // border: 1px solid red;
     justify-content: space-between;
     padding: 1rem 2rem;
+    position: relative;
     .sidebar{
         display: flex;
         display: flex;
         max-width: 26vw;
         min-width: 26vw;
-        border: 1px solid yellow;
+        // border: 1px solid yellow;
         flex-direction: column;
+
+        position: fixed;
+        right: 1rem;
+        top: 7rem;
     }
     .mainSection{
         width: calc(100% - 30vw);

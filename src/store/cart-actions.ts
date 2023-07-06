@@ -15,7 +15,7 @@ export const sendCartData = (cart:cartState) => {
             const sendData = {
                 items:cart.cartItems,
                 totalQuantity:cart.totalQuantity,
-                deliveryType:cart.cartItems
+                deliveryType:cart.deliveryType
             }
             axios.put(baseUrl,sendData).then((response)=>{
                 console.log(response.data);
@@ -41,7 +41,6 @@ export const getCartData = ()=> {
         const getData = async() => {            
 
             axios.get(baseUrl).then(response => {
-                console.log("response.data !!!!",response.data);
                 const cartData = response.data;
                 const cart:cartState = {
                     cartItems:cartData.items,

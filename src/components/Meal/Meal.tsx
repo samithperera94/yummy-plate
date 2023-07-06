@@ -26,7 +26,7 @@ const Meal: React.FC<{ meal: MealItem }> = (props) => {
   }
   return (
     <li key={id}>
-      <Card className='mealItem' >
+      <Card className='mealItem' key={id}>
         <img className={classes.image} src={url} />
         <div className={classes.summary}>
           <h3 className={classes.title}>{name} ({portion})</h3>
