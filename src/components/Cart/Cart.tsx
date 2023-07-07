@@ -23,6 +23,8 @@ const EmptyCart = () => {
 const Cart = () => {
     const cartItems = useAppSelector(state => state.cart.cartItems);
     const isDisabled = cartItems.length === 0 ? true : false;
+    const totalPrice = cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
+    console.warn("totalPrice *****", totalPrice);
     return (
         <Card className='cartCard'>
             <h3 className={classes.title}>Your Order</h3>
@@ -36,7 +38,7 @@ const Cart = () => {
 
             {cartItems.length !== 0 && <div className={classes.totalAmount}>
                 <h4 className={classes.label}>Total Amount</h4>
-                <span className={classes.total}>200</span>
+                <span className={classes.total}>{totalPrice}</span>
             </div>}
 
             <Button disabled={isDisabled} className='cartBtn'>Go To Checkout</Button>

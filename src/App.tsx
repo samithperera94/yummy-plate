@@ -6,7 +6,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
+import MenuPage from './pages/MenuPage';
 import SideBarLayout from './layouts/SideBarLayout';
+import CartLayout from './layouts/CartLayout';
+import CheckoutPageLayout from './layouts/CheckoutPageLayout';
+import CheckoutPage from './pages/CheckoutPage';
 
 const router = createBrowserRouter([
   {
@@ -16,14 +20,28 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SideBarLayout />,
+        element: <HomePage />
+      },
+      {
+        path: "/menu",
+        element: <CartLayout />,
         children: [
           {
             index: true,
-            element: <HomePage />
+            element: <MenuPage />
           }
         ]
-      }
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPageLayout />,
+        children: [
+          {
+            index: true,
+            element: <CheckoutPage />
+          }
+        ]
+      },
     ]
   }
 ])

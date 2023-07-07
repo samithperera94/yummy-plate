@@ -23,15 +23,23 @@ function MainNavigation() {
                     </li>
                     <li>
                         <NavLink
+                            to="/menu"
                             className={({ isActive }) => isActive ? classes.active : undefined}
-                            to="/promotions">
+                            end>
+                            Menu
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className={({ isActive }) => isActive ? classes.active : undefined}
+                            to="menu/promotions">
                             Promotions
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             className={({ isActive }) => isActive ? classes.active : undefined}
-                            to="/top-rated">
+                            to="menu/top-rated">
                             Top Rated
                         </NavLink>
                     </li>
