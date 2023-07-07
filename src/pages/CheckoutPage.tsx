@@ -1,8 +1,22 @@
-import React from 'react'
+import React from 'react';
+import DeliveryDetails from '../components/Checkout/DeliveryDetails';
+import PaymentMethod from '../components/Checkout/PaymentMethod';
+import Card from '../components/UI/Card';
+import classes from "./CheckoutPage.module.scss";
 
 const CheckoutPage = () => {
     return (
-        <div>CheckoutPage</div>
+        <>
+            <div>CheckoutPage</div>
+
+            <Card>
+                <div className={classes.mainSection}>
+                    <DeliveryDetails />
+                </div>
+            </Card>
+
+        </>
+
     )
 }
 
