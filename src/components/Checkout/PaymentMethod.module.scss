@@ -1,0 +1,40 @@
+
+.paymentMethod{
+    display: flex;
+    color: black;
+    flex-direction: column;
+    .title{
+        padding: 0 1rem;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;       
+        .formSection{
+            display: flex;
+            width: 50%;
+            flex-direction: row;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            .label{
+                color: black;
+                padding-bottom: 0.5rem;
+            }
+            .image{
+                max-width: 150px;
+                max-height: 150px;
+                border-color: hsl(0, 0%, 80%);
+            }
+            .input{
+                height: 2rem;
+                width: 2rem;
+                background: white;
+                color: black;
+                border-color: hsl(0, 0%, 80%);
+                outline: none;
+                font-size: 1rem;
+                margin-right: 2rem;
+            }
+        }
+    }
+}

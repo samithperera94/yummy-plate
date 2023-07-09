@@ -1,0 +1,44 @@
+.success{
+    display: flex;
+    color: black;
+    flex-direction: column;
+    .title{
+        padding: 0 1rem;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;   
+        .bill{            
+            border: 1px solid hsl(0, 0%, 80%);
+            border-radius: 2px;
+            outline: none;
+            padding: 2rem 0;
+            .title{
+                font-size: 1.2rem;
+                padding: 0 2rem;
+            }
+            .billItems{
+                display: flex;
+                flex-direction: column;
+                .items{
+                    padding: 0 1rem;
+                    overflow: auto;
+                    max-height: 500px;
+                }
+            }
+            .summary{
+                display: flex;
+                flex-direction: column;
+                font-size: 1.2rem;
+            }
+        }
+        .actions{
+            margin-top: 2rem;            
+            width: 60%;
+            min-width: 400px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
