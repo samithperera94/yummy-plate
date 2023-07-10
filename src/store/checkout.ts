@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import DeliveryData from "../models/checkout";
+import DeliveryData,{BillData} from "../models/checkout";
 
 interface checkoutState {
     checkoutData:DeliveryData|null,
-    deliveyDataFilled:boolean,
-    paymentMethod:string|null
+    deliveyType:string|number|null,
+    paymentMethod:string|null,
+    billData:BillData|null
 }
 
 const initialCheckoutState:checkoutState = {
     checkoutData:null,
-    deliveyDataFilled:false,
-    paymentMethod:null
+    deliveyType:null,
+    paymentMethod:null,
+    billData:null
 }
 
 const checkoutSlice = createSlice({
@@ -19,10 +21,19 @@ const checkoutSlice = createSlice({
     reducers:{
         addCheckoutData(state,action:PayloadAction<{checkoutData:DeliveryData}>){
             state.checkoutData = action.payload.checkoutData;
-            state.deliveyDataFilled = true;
         },
-        adPaymentDetails(state,action:PayloadAction<{type:string}>){
+        addPaymentDetails(state,action:PayloadAction<{type:string}>){
             state.paymentMethod = action.payload.type;
+        },        
+        addBillData(state,action:PayloadAction<{bill:BillData,type:string|number}>){
+            const {subTotal,deliveryFee,couponAmount,totalToPay} = action.payload.bill;
+            state.billData = {
+                subTotal:subTotal,
+                deliveryFee:deliveryFee,
+                couponAmount:couponAmount,
+                totalToPay:totalToPay,
+            }
+            state.deliveyType = action.payload.type;
         }
     }
 });

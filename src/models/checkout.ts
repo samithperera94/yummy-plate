@@ -22,3 +22,10 @@ class DeliveryData {
 }
 
 export default DeliveryData;
+
+export interface BillData {
+    subTotal:number;
+    deliveryFee:number;
+    couponAmount:number;
+    totalToPay:number;
+}
