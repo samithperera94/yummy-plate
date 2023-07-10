@@ -13,8 +13,8 @@ const CheckoutPage = () => {
             <Card>
                 <div className={classes.mainSection}>
                     {/* <DeliveryDetails /> */}
-                    {/* <PaymentMethod /> */}
-                    <SuccessPage />
+                    <PaymentMethod />
+                    {/* <SuccessPage /> */}
                 </div>
             </Card>
 

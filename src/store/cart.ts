@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
 import CartItem from "../models/cart";
 
 export interface cartState {
