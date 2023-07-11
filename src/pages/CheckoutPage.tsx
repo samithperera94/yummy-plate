@@ -6,6 +6,7 @@ import classes from "./CheckoutPage.module.scss";
 import SuccessPage from "../components/Checkout/SuccessPage";
 import { useAppDispatch, useAppSelector } from '../store';
 import { checkoutActions } from '../store/checkout';
+import ProgressBar from "../components/Checkout/ProgressBar";
 
 
 const CheckoutPage = () => {
@@ -35,6 +36,17 @@ const CheckoutPage = () => {
     }, [cartState, dispatch])
 
 
+    let pageContent = '';
+    if (checkoutState.checkoutData === null) {
+        pageContent = 'DeliveryDetails'
+    } else {
+        if (checkoutState.paymentMethod === null) {
+            pageContent = 'PaymentMethod'
+        } else {
+            pageContent = 'SuccessPage'
+        }
+
+    }
 
     return (
         <>
@@ -42,9 +54,10 @@ const CheckoutPage = () => {
 
             <Card>
                 <div className={classes.mainSection}>
-                    {/* <DeliveryDetails /> */}
-                    <PaymentMethod />
-                    {/* <SuccessPage /> */}
+                    <ProgressBar content={pageContent} />
+                    {pageContent === 'DeliveryDetails' && <DeliveryDetails />}
+                    {pageContent === 'PaymentMethod' && <PaymentMethod />}
+                    {pageContent === 'SuccessPage' && <SuccessPage />}
                 </div>
             </Card>
 

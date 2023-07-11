@@ -5,6 +5,7 @@ import classes from "./Cart.module.scss";
 import Button from '../UI/Button';
 import CartProductItem from "./CartItem";
 import { useAppSelector } from '../../store';
+import { useNavigate } from 'react-router-dom';
 
 
 const EmptyCart = () => {
@@ -24,7 +25,11 @@ const Cart = () => {
     const cartItems = useAppSelector(state => state.cart.cartItems);
     const totalPrice = useAppSelector(state => state.cart.subTotal);
     const isDisabled = cartItems.length === 0 ? true : false;
-    console.warn("totalPrice *****", totalPrice);
+    const navigate = useNavigate();
+
+    const navigateHandler = () => {
+        navigate("/checkout")
+    }
     return (
         <Card className='cartCard'>
             <h3 className={classes.title}>Your Order</h3>
@@ -41,7 +46,11 @@ const Cart = () => {
                 <span className={classes.total}>{totalPrice}</span>
             </div>}
 
-            <Button disabled={isDisabled} className='cartBtn'>Go To Checkout</Button>
+            <Button
+                disabled={isDisabled}
+                className='cartBtn'
+                onClick={navigateHandler}
+            >Go To Checkout</Button>
 
         </Card>
 
