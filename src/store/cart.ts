@@ -4,15 +4,15 @@ import CartItem from "../models/cart";
 export interface cartState {
     cartItems:CartItem[],
     totalQuantity:number,
-    deliveryType:string|number,
-    isCartChanged:boolean
+    isCartChanged:boolean,
+    subTotal:number
 }
 
 
 const initialCartState:cartState = {
     cartItems:[],
     totalQuantity:0,
-    deliveryType:'delivery',
+    subTotal:0,
     isCartChanged:false
 }
 
@@ -32,6 +32,7 @@ const cartSlice = createSlice({
             }
             state.totalQuantity ++;
             state.isCartChanged=true;
+            state.subTotal = state.cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
         },
         removeFromCart(state,action:PayloadAction<{id:string}>){
             const itemId = action.payload.id;
@@ -48,16 +49,16 @@ const cartSlice = createSlice({
             }
             state.totalQuantity --;
             state.isCartChanged=true;
+            state.subTotal = state.cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
+
         },
         replaceCart(state,action:PayloadAction<{cart:cartState}>){
             state.cartItems = action.payload.cart.cartItems;
             state.totalQuantity = action.payload.cart.totalQuantity;
-            state.deliveryType = action.payload.cart.deliveryType;
+            state.subTotal = state.cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
+
         },
-        setDeliveryType(state,action:PayloadAction<{type:string|number}>){
-            state.deliveryType = action.payload.type;
-            state.isCartChanged=true;
-        }
+        
     }
 });
 

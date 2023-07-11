@@ -3,16 +3,16 @@ import DeliveryData,{BillData} from "../models/checkout";
 
 interface checkoutState {
     checkoutData:DeliveryData|null,
-    deliveyType:string|number|null,
+    deliveryType:string|number|null,
     paymentMethod:string|null,
     billData:BillData|null
 }
 
 const initialCheckoutState:checkoutState = {
     checkoutData:null,
-    deliveyType:null,
+    deliveryType:'delivery',
     paymentMethod:null,
-    billData:null
+    billData:null,
 }
 
 const checkoutSlice = createSlice({
@@ -25,7 +25,7 @@ const checkoutSlice = createSlice({
         addPaymentDetails(state,action:PayloadAction<{type:string}>){
             state.paymentMethod = action.payload.type;
         },        
-        addBillData(state,action:PayloadAction<{bill:BillData,type:string|number}>){
+        addBillData(state,action:PayloadAction<{bill:BillData}>){
             const {subTotal,deliveryFee,couponAmount,totalToPay} = action.payload.bill;
             state.billData = {
                 subTotal:subTotal,
@@ -33,7 +33,9 @@ const checkoutSlice = createSlice({
                 couponAmount:couponAmount,
                 totalToPay:totalToPay,
             }
-            state.deliveyType = action.payload.type;
+        },
+        setDeliveryType(state,action:PayloadAction<{type:string|number}>){
+            state.deliveryType = action.payload.type;
         }
     }
 });

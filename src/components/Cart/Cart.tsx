@@ -22,8 +22,8 @@ const EmptyCart = () => {
 
 const Cart = () => {
     const cartItems = useAppSelector(state => state.cart.cartItems);
+    const totalPrice = useAppSelector(state => state.cart.subTotal);
     const isDisabled = cartItems.length === 0 ? true : false;
-    const totalPrice = cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
     console.warn("totalPrice *****", totalPrice);
     return (
         <Card className='cartCard'>

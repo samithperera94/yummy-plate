@@ -11,26 +11,27 @@ import { checkoutActions } from '../store/checkout';
 const CheckoutPage = () => {
 
     const cartState = useAppSelector(state => state.cart);
+    const checkoutState = useAppSelector(state => state.checkout);
 
-    const totalPrice = cartState.cartItems.map((item) => item.totalPrice).reduce(((total, num) => total + num), 0);
-    const deliveryType = cartState.deliveryType;
+    const deliveryType = checkoutState.deliveryType;
     const deliveryFee: number = deliveryType === "delivery" ? 200 : 0
-    const totalToPay: number = totalPrice + deliveryFee;
+    const totalToPay: number = cartState.subTotal + deliveryFee;
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         //need to check this : populate one slice with other's data
 
+        console.log("adding bill data initial =-------=")
         const bill = {
-            subTotal: totalPrice,
+            subTotal: cartState.subTotal,
             deliveryFee: deliveryFee,
             couponAmount: 0,
             totalToPay: totalToPay,
         }
 
 
-        dispatch(checkoutActions.addBillData({ bill: bill, type: deliveryType }))
+        dispatch(checkoutActions.addBillData({ bill }))
     }, [cartState, dispatch])
 
 

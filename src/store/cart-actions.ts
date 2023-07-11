@@ -15,7 +15,7 @@ export const sendCartData = (cart:cartState) => {
             const sendData = {
                 items:cart.cartItems,
                 totalQuantity:cart.totalQuantity,
-                deliveryType:cart.deliveryType
+                subTotal:cart.subTotal
             }
             axios.put(baseUrl,sendData).then((response)=>{
                 console.log(response.data);
@@ -45,8 +45,8 @@ export const getCartData = ()=> {
                 const cart:cartState = {
                     cartItems:cartData.items,
                     totalQuantity:cartData.totalQuantity,
-                    deliveryType:cartData.deliveryType,
-                    isCartChanged:false
+                    isCartChanged:false,
+                    subTotal:cartData.subTotal,
                 }
 
                 dispatch(cartActions.replaceCart({cart}))

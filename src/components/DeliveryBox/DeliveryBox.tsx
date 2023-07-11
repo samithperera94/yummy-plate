@@ -4,8 +4,7 @@ import CustomSelect from '../UI/CustomSelect';
 import SelectOption from '../../models/select';
 import classes from "./DeliveryBox.module.scss";
 import { useAppDispatch, useAppSelector } from '../../store';
-import { cartActions } from '../../store/cart';
-
+import { checkoutActions } from '../../store/checkout';
 
 const _options: SelectOption[] = [
     new Option('Delivery', 'delivery'),
@@ -17,14 +16,14 @@ const _defaultValue: SelectOption = new Option('Delivery', 'delivery');
 const DeliveryBox = () => {
 
     const dispatch = useAppDispatch();
-    const deliveryType = useAppSelector(state => state.cart.deliveryType);
+    const deliveryType = useAppSelector(state => state.checkout.deliveryType);
 
 
     const onItemSelectHandler = (item: SelectOption | null) => {
         console.warn("item ::::::", item, item?.value);
         const value = item?.value;
         if (value) {
-            dispatch(cartActions.setDeliveryType({ type: value }))
+            dispatch(checkoutActions.setDeliveryType({ type: value }))
         }
 
     }
