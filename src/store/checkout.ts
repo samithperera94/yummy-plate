@@ -5,7 +5,8 @@ interface checkoutState {
     checkoutData:DeliveryData|null,
     deliveryType:string|number|null,
     paymentMethod:string|null,
-    billData:BillData|null
+    billData:BillData|null,
+    orderCompleted:boolean
 }
 
 const initialCheckoutState:checkoutState = {
@@ -13,6 +14,7 @@ const initialCheckoutState:checkoutState = {
     deliveryType:'delivery',
     paymentMethod:null,
     billData:null,
+    orderCompleted:false
 }
 
 const checkoutSlice = createSlice({
@@ -36,6 +38,9 @@ const checkoutSlice = createSlice({
         },
         setDeliveryType(state,action:PayloadAction<{type:string|number}>){
             state.deliveryType = action.payload.type;
+        },
+        setOrderCompleted(state){
+            state.orderCompleted = true;
         }
     }
 });

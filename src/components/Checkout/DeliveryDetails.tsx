@@ -3,6 +3,8 @@ import Button from '../UI/Button';
 import classes from "./DeliveryDetails.module.scss";
 import { ValidateDeliveryFormData } from "../../configs/validations";
 import { ValidationError } from '../../models/checkout';
+import { checkoutActions } from '../../store/checkout';
+import { useAppDispatch } from '../../store';
 
 const DeliveryDetails = () => {
     const firstNameRef = useRef<HTMLInputElement>(null);
@@ -12,6 +14,7 @@ const DeliveryDetails = () => {
 
     const [formError, setFormError] = useState<{ type: string, message: string }>();
 
+    const dispatch = useAppDispatch();
 
     const submitDetails = (event: React.FormEvent) => {
         event.preventDefault();
@@ -31,6 +34,8 @@ const DeliveryDetails = () => {
 
         if (validationError) {
             setFormError({ type: validationError.type, message: validationError.message });
+        } else {
+            dispatch(checkoutActions.addCheckoutData({ checkoutData: formData }))
         }
 
 

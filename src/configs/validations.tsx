@@ -8,7 +8,8 @@ export const ValidateEmail = (mail: string) => {
 }
 
 export const ValidateContactNumber = (contactNumber: number) => {
-    if (contactNumber.toLocaleString().length === 10) {
+    console.log("contactNumber", contactNumber, "len", contactNumber.toLocaleString().length)
+    if (contactNumber.toString().trim().length === 10) {
         return (true)
     }
     return (false)
@@ -26,6 +27,7 @@ export const ValidateDeliveryFormData = (data: DeliveryData) => {
         return new ValidationError("email", "Please enter a valid Email")
     }
     if (contactNumber.toString().length === 0 || !ValidateContactNumber(contactNumber)) {
+        console.log(contactNumber, ">>>>>")
         return new ValidationError("contactNumber", "Please enter a valid Contact Number")
     }
 }

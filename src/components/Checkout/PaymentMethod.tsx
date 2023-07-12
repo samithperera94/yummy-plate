@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
 import Button from '../UI/Button';
 import classes from "./PaymentMethod.module.scss";
+import { checkoutActions } from '../../store/checkout';
+import { useAppDispatch } from '../../store';
 
 const visa = 'https://logowik.com/content/uploads/images/857_visa.jpg'
 const master = 'https://www.investopedia.com/thmb/F8CKM3YkF1fmnRCU2g4knuK0eDY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MClogo-c823e495c5cf455c89ddfb0e17fc7978.jpg'
 const PaymentMethod = () => {
-    const [paymentOption, setPaymentOption] = useState<string>();
+    const [paymentOption, setPaymentOption] = useState<string>('');
+    const [formError, setFormError] = useState(false);
+
+    const dispatch = useAppDispatch();
 
     const handleChange = (value: string) => {
-        setPaymentOption(value)
+        setFormError(false);
+        setPaymentOption(value);
+    }
+
+    const paymentMethodHandler = (event: React.FormEvent) => {
+        event.preventDefault();
+        if (paymentOption.trim().length > 0) {
+            dispatch(checkoutActions.addPaymentDetails({ type: paymentOption }));
+            dispatch(checkoutActions.setOrderCompleted());
+        } else {
+            setFormError(true);
+        }
     }
     return (
         <div className={classes.paymentMethod}>
@@ -42,8 +58,13 @@ const PaymentMethod = () => {
                         <img className={classes.image} src={master} />
                     </label>
                 </div>
+                {formError &&
+                    <div className={classes.errorMessage}>
+                        Please select a payment option
+                    </div>
+                }
 
-                <Button>Complete</Button>
+                <Button onClick={paymentMethodHandler}>Complete</Button>
             </form>
         </div>
     )

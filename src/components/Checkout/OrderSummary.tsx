@@ -38,38 +38,47 @@ const OrderSummary = () => {
     }
     return (
         <div className={classes.summary}>
-            <div className={classes.item}>
-                <span className={classes.title}>Sub Total</span>
-                <span className={classes.value}>: {totalPrice}</span>
-            </div>
-            {
-                deliveryType === 'delivery' &&
-                <div className={classes.item}>
-                    <span className={classes.title}>Delivery Fee</span>
-                    <span className={classes.value}>: {deliveryFee}</span>
+            {checkoutState.orderCompleted &&
+                <div className={classes.completed}>
+                    Congratulations !
+                    <span>You have made the order successfully</span>
                 </div>
             }
+            <div className={checkoutState.orderCompleted ? classes.hideSummary : undefined}>
+                <div className={classes.item}>
+                    <span className={classes.title}>Sub Total</span>
+                    <span className={classes.value}>: {totalPrice}</span>
+                </div>
+                {
+                    deliveryType === 'delivery' &&
+                    <div className={classes.item}>
+                        <span className={classes.title}>Delivery Fee</span>
+                        <span className={classes.value}>: {deliveryFee}</span>
+                    </div>
+                }
 
-            {couponValue !== null && <div className={classes.item}>
-                <span className={classes.title}>Coupon</span>
-                <span className={classes.value}>: {200}</span>
-            </div>}
+                {couponValue !== null && <div className={classes.item}>
+                    <span className={classes.title}>Coupon</span>
+                    <span className={classes.value}>: {200}</span>
+                </div>}
 
-            <div className={classes.item}>
-                <span className={classes.title}>Total to Pay</span>
-                <span className={classes.value}>: {checkoutState.billData?.totalToPay}</span>
+                <div className={classes.item}>
+                    <span className={classes.title}>Total to Pay</span>
+                    <span className={classes.value}>: {checkoutState.billData?.totalToPay}</span>
+                </div>
+                {couponValue === null && <div className={classes.coupon}>
+                    <input className={classes.input}
+                        ref={couponInputRef}
+                        type="text"
+                        name="coupon"
+                        placeholder='coupon..' />
+                    {validationError && <span className={classes.errorText}>Please insert a valid coupon </span>}
+                    <Button onClick={applyCouponHandler}>
+                        Apply Coupon
+                    </Button>
+                </div>}
             </div>
-            {couponValue === null && <div className={classes.coupon}>
-                <input className={classes.input}
-                    ref={couponInputRef}
-                    type="text"
-                    name="coupon"
-                    placeholder='coupon..' />
-                {validationError && <span className={classes.errorText}>Please insert a valid coupon </span>}
-                <Button onClick={applyCouponHandler}>
-                    Apply Coupon
-                </Button>
-            </div>}
+
         </div>
     )
 }

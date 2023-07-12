@@ -40,5 +40,18 @@
             display: flex;
             justify-content: space-between;
         }
+        .navLink{
+            background-color: var(--color-primary-400);
+            border-radius: 0.375rem;
+            padding: 1rem 2rem;
+            outline: none;
+            border: none;
+            color: #fff;
+            white-space: nowrap;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
     }
 }

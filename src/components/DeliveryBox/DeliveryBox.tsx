@@ -20,7 +20,7 @@ const DeliveryBox = () => {
 
 
     const onItemSelectHandler = (item: SelectOption | null) => {
-        console.warn("item ::::::", item, item?.value);
+        // console.warn("item ::::::", item, item?.value);
         const value = item?.value;
         if (value) {
             dispatch(checkoutActions.setDeliveryType({ type: value }))
