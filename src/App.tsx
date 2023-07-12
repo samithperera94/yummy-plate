@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { Children, useEffect } from 'react';
 import { sendCartData, getCartData } from './store/cart-actions';
 import { useAppSelector, useAppDispatch } from './store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -11,6 +11,9 @@ import SideBarLayout from './layouts/SideBarLayout';
 import CartLayout from './layouts/CartLayout';
 import CheckoutPageLayout from './layouts/CheckoutPageLayout';
 import CheckoutPage from './pages/CheckoutPage';
+import AdminPageLayout from "./layouts/AdminPageLayout"
+import AddMeal from './pages/admin/AddMeal';
+import AdminHomePage from './pages/admin/AdminHomePage';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +45,20 @@ const router = createBrowserRouter([
           }
         ]
       },
+    ]
+  },
+  {
+    path: "/admin",
+    element: <AdminPageLayout />,
+    children: [
+      {
+        index: true,
+        element: <AdminHomePage />
+      },
+      {
+        path: "addmeal",
+        element: <AddMeal />
+      }
     ]
   }
 ])

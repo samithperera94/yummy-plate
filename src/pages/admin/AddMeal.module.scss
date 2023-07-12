@@ -1,0 +1,55 @@
+.addMeal{
+    display: flex;
+    color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    .title{
+        padding: 0 1rem;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+        .names{
+            display: flex;
+            .formSection{
+               width: 50%;
+            }
+        }
+        .formSection{
+            display: flex;
+            width: 50%;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+            &.error{
+                .label{
+                    color: rgba(245, 81, 11, 0.615);
+                }
+                .input{
+                    border-color:rgba(245, 81, 11, 0.615);
+                    color: rgba(245, 81, 11, 0.615);
+
+                }
+            }
+            .label{
+                color: black;
+                padding-bottom: 0.5rem;
+            }
+            .input{
+                height: 3rem;
+                background: white;
+                color: black;
+                border-color: hsl(0, 0%, 80%);
+                outline: none;
+                font-size: 1rem;
+                padding: 0.2rem;
+            }
+        }
+        .errorMessage{
+            color: rgba(245, 81, 11, 0.615);
+            padding: 1rem;
+        }
+    }
+}
