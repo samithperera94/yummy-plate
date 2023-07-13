@@ -11,15 +11,10 @@
     .form{
         display: flex;
         flex-direction: column;
-        .names{
-            display: flex;
-            .formSection{
-               width: 50%;
-            }
-        }
+        
         .formSection{
             display: flex;
-            width: 50%;
+            width: 90%;
             flex-direction: column;
             justify-content: space-between;
             padding: 1rem;

@@ -34,6 +34,7 @@ const DeliveryBox = () => {
                 defaultValue={_defaultValue}
                 onItemSelect={onItemSelectHandler}
                 className='deliveryType'
+                isMulti={false}
             />
             {deliveryType === 'delivery' && <div className={classes.address}>
                 <a>Enter a delivery address</a>
