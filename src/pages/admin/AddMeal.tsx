@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classes from "./AddMeal.module.scss";
 import Button from '../../components/UI/Button';
 import Card from '../../components/UI/Card';
 import CustomSelect from '../../components/UI/CustomSelect';
 import SelectOption from '../../models/select';
-import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { mealActions } from '../../store/meal';
+import MealItem from '../../models/meal';
+import { addMealItem } from '../../store/meal-actions';
 
 const _options: SelectOption[] = [
     new Option('Spicy', 'spicy'),
@@ -41,28 +44,33 @@ const AddMeal = () => {
     const [formError, setFormError] = useState<{ type: string, message: string }>();
     const [tags, setTags] = useState<string[]>([]);
 
+    const mealState = useAppSelector(state => state.meal);
+    const { isModified, meals } = mealState;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        console.log("meals changed .......")
+        dispatch(addMealItem(meals))
+    }, [isModified]);
+
     const submitDetails = (event: React.FormEvent) => {
         event.preventDefault();
         //need to do the validations
         const id = new Date();
-        const mealData = {
+        const meal: MealItem = {
             id: id.toString(),
-            name: mealNameRef.current?.value,
-            price: priceRef.current?.value,
+            name: mealNameRef.current ? mealNameRef.current?.value : '',
+            price: priceRef.current ? parseInt(priceRef.current?.value) : 0,
             amount: 1,
-            totalPrice: priceRef.current?.value,
-            description: descriptionRef.current?.value,
-            portion: portionRef.current?.value,
+            totalPrice: priceRef.current ? parseInt(priceRef.current?.value) : 0,
+            description: descriptionRef.current ? descriptionRef.current?.value : '',
+            portion: portionRef.current ? portionRef.current?.value : '',
             tags: tags,
-            url: urlRef.current?.value
+            url: urlRef.current ? urlRef.current?.value : ''
         }
 
-        const baseUrl = 'https://react-http-d7746-default-rtdb.asia-southeast1.firebasedatabase.app/meal.json'
-        axios.post(baseUrl, mealData).then((response) => {
-            console.log(response.data);
-        }).catch((error) => {
-            throw new Error("Sending Meak Data Failed!")
-        });
+
+        dispatch(mealActions.addMeal({ meal }));
     }
 
     const onItemSelectHandler = (items: string[]) => {
@@ -153,3 +161,4 @@ const AddMeal = () => {
 }
 
 export default AddMeal
+
